@@ -37,9 +37,7 @@ public class EsIespuertodelacruzRlLecturaFicheros {
 
         
         while ( (persona = br.readLine()) !=null ){
-        /*
-        while ( (Files.readAllLines(p)) !=null ){
-        */
+
             String[]datos = persona.split(";");
             
             for (int i = 0; i < datos.length; i++) {
