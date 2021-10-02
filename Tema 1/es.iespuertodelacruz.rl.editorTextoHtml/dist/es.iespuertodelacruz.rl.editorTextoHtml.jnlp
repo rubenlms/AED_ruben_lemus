@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="es.iespuertodelacruz.rl.editorTextoHtml.jnlp">
+  <information>
+    <title>es.iespuertodelacruz.rl.editorTextoHtml</title>
+    <vendor>ruben</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="es.iespuertodelacruz.rl.editorTextoHtml.jar" size="7657" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="es.iespuertodelacruz.rl.editorTextoHtml" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="es.iespuertodelacruz.rl.editortextohtml.EsIespuertodelacruzRlEditorTextoHtml"  name="es.iespuertodelacruz.rl.editorTextoHtml" />
+  <update check="always"/>
+</jnlp>
