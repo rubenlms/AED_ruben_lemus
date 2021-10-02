@@ -6,8 +6,10 @@
 package es.iespuertodelacruz.rl.lecturaficheros;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,6 +25,8 @@ public class EsIespuertodelacruzRlLecturaFicheros {
     /**
      * @param args the command line arguments
      */
+    
+    
         
     
     public static void main(String[] args) throws IOException {
@@ -37,16 +41,25 @@ public class EsIespuertodelacruzRlLecturaFicheros {
 
         
         while ( (persona = br.readLine()) !=null ){
-
+        /*
+        while ( (Files.readAllLines(p)) !=null ){
+        */
             String[]datos = persona.split(";");
+            Persona p1 = null;
             
             for (int i = 0; i < datos.length; i++) {
-                Persona p1 = new Persona(datos[0], datos[1], Integer.parseInt(datos[2]));
-                System.out.println("Nombre: " + p1.getNombre() + "\nDNI: " + p1.getDni() + "\nEdad: " + p1.getEdad());
+                p1 = new Persona(datos[0], datos[1], Integer.parseInt(datos[2]));
+                listaPersonas.add(p1);
             }
             
+            
+            System.out.println("Nombre: " + p1.getNombre() + "\nDNI: " + p1.getDni() + "\nEdad: " + p1.getEdad());
         }
 
     }
+    
+    
+    
+    
     
 }

@@ -5,11 +5,13 @@
  */
 package es.iespuertodelacruz.rl.lecturaficheros;
 
+import java.io.Serializable;
+
 /**
  *
  * @author dama
  */
-public class Persona {
+public class Persona implements Serializable {
     
     String nombre;
     String dni;
@@ -33,4 +35,30 @@ public class Persona {
         return edad;
     }  
     
+    /*
+    public Persona getPersona(String dni){
+        Persona p = null;
+        
+        return p;
+    }
+    
+    public void crearPersona(Persona p){
+        try (
+            PrintWriter pw = new PrintWriter(
+                new BufferedWriter(
+                    new FileWriter(
+                        //true-> para que no sobreescriba
+                        //completar método para que cree una persona
+                            //hacer un try with resources
+                        )
+                    )
+                )
+            )
+    }
+    
+    public ArrayList<Persona>per getPersona(){
+    }
+        
+    }
+    */
 }

@@ -27,7 +27,7 @@ public class Controlador implements Initializable {
 
     @FXML
     private TextArea TAtexto;
-    private GestorFicheros gf;
+    private GestorFicheros gf = new GestorFicheros();
     private File selectedFile;
 
     /**

@@ -20,6 +20,9 @@ import javafx.scene.control.TextArea;
  */
 public class GestorFicheros {
     
+    public GestorFicheros(){
+    }
+    
      public void abrir(TextArea TAtexto, File selectedFile) throws FileNotFoundException, IOException{
         Path pathFile= selectedFile.toPath();
             
@@ -30,6 +33,7 @@ public class GestorFicheros {
                 
             while ((texto = bf.readLine())!=null){
                 TAtexto.setText(texto);
+                bf.close();
                 }
             }
         }
@@ -39,6 +43,7 @@ public class GestorFicheros {
         File archivo = new File(selectedFile.getAbsolutePath());
         FileWriter escribir = new FileWriter(archivo, true);
         escribir.write(TAtexto.getText());
+        escribir.close();
     }
     
     public void guardarComo(TextArea TAtexto, File selectedFile) throws IOException{
