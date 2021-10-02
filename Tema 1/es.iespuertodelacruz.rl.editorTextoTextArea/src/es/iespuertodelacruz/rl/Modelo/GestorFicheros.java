@@ -41,7 +41,7 @@ public class GestorFicheros {
     
     public void guardar(TextArea TAtexto, File selectedFile) throws IOException{
         File archivo = new File(selectedFile.getAbsolutePath());
-        FileWriter escribir = new FileWriter(archivo, true);
+        FileWriter escribir = new FileWriter(archivo);
         escribir.write(TAtexto.getText());
         escribir.close();
     }

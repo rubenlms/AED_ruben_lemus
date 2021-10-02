@@ -38,7 +38,7 @@ public class Gestor {
     public void guardar(HTMLEditor htmlEditor, File selectedFile) throws IOException{
         try{
             File archivo = new File(selectedFile.getAbsolutePath());
-            FileWriter escribir = new FileWriter("", true);
+            FileWriter escribir = new FileWriter(archivo);
             escribir.write(transformarHTML(htmlEditor));
             escribir.close();
             System.out.println("contenido guardado");
