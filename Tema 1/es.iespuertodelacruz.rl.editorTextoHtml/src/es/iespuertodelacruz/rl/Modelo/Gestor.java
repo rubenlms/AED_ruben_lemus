@@ -29,6 +29,7 @@ public class Gestor {
                 
                 while ((texto = bf.readLine())!=null){
                     htmlEditor.setHtmlText(texto);
+                    bf.close();
                     }
                 }
             }
@@ -39,6 +40,7 @@ public class Gestor {
             File archivo = new File(selectedFile.getAbsolutePath());
             FileWriter escribir = new FileWriter("", true);
             escribir.write(transformarHTML(htmlEditor));
+            escribir.close();
             System.out.println("contenido guardado");
         } catch (IOException e){
             System.out.println("Error: " + e);
@@ -51,18 +53,11 @@ public class Gestor {
                 Path pathFile = selectedFile.toPath();
                 System.out.println("File selected: " + pathFile.toString());
             
-                //System.out.println(htmlEditor.getHtmlText());
-            
                 File archivoNuevo = new File(selectedFile.getAbsolutePath());
         
                 FileWriter escribir = new FileWriter(archivoNuevo);
-                
                 escribir.write(transformarHTML(htmlEditor));
-            
                 escribir.close();
-            
-                System.out.println("Existe? " + archivoNuevo.exists());
-                System.out.println("Ruta: " + archivoNuevo.getAbsolutePath());
             }
     }
     

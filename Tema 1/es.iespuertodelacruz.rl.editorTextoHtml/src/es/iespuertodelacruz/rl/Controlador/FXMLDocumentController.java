@@ -28,7 +28,7 @@ public class FXMLDocumentController implements Initializable {
     private Label label;
     @FXML
     private HTMLEditor htmlEditor;
-    private Gestor gf;
+    private Gestor gf = new Gestor();
     File selectedFile;
     
     private void handleButtonAction(ActionEvent event) {
