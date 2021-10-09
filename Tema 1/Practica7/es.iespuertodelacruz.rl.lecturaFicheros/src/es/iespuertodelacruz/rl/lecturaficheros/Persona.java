@@ -53,33 +53,4 @@ public class Persona implements Serializable {
     }
     
     
-    
-    public Persona getPersona(String dni) throws IOException{
-        Persona p1 = null;
-        
-        Path p = Paths.get("personas.txt");
-        
-        BufferedReader br = Files.newBufferedReader(p);
-        
-        String persona;
-
-        
-        while ( (persona = br.readLine()) !=null ){
-
-            String[]datos = persona.split(";");
-            
-            for (int i = 0; i < datos.length; i++) {
-                if(datos[1].equals(dni)){
-                    p1 = new Persona(datos[0], datos[1], Integer.parseInt(datos[2]));
-                }
-            }
-        }
-        
-        return (Persona) p1;
-    }
-    
-    public void crearPersona(Persona p){
-
-    }
-    
 }

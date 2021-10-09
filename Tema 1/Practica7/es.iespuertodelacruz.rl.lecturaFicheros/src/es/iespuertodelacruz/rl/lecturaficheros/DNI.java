@@ -58,8 +58,10 @@ public class DNI implements Serializable {
         } else {
             System.out.println("NO es correcta.");
         }
+        
+        //Hacer que el método el resultado, en lugar de mostrar (debe estar el mensaje en la vista)
          
-    } catch(Exception e) {
+    } catch(NumberFormatException e) {
         e.printStackTrace();
     }
         
