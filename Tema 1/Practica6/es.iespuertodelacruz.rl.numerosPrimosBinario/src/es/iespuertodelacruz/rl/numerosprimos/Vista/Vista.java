@@ -27,11 +27,16 @@ public class Vista {
         try{
             FileInputStream fis=new FileInputStream(f);
             DataInputStream dis=new DataInputStream(fis);
+            int contador=0;
             
-            //System.out.println("LEYENDO ARCHIVO Y MOSTRANDO:");
-            while (!finArchivo){
-                
-                System.out.println(dis.readInt());
+            //System.out.println("LEYENDO ARCHIVO Y MOSTRANDO LOS 100 PRIMEROS:");
+            while (!finArchivo&&contador<100){
+                int num = dis.readInt();
+                contador++;
+                for (int i = 0; i < contador; i++) {
+                    System.out.println(num);
+                    break;
+                }
             }
             dis.close();
         } 
