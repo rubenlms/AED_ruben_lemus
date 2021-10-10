@@ -17,6 +17,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import es.iespuertodelacruz.rl.Vista.Vista;
+import java.nio.file.StandardOpenOption;
 
 /**
  *
@@ -32,11 +34,13 @@ public class Modelo {
     Persona p4 = new Persona("Sara","86421357P",21,49,1.58);
     Persona p5 = new Persona("Antonio","02461357B",39,75,1.73);
     
+    Vista v = new Vista();
+    
     /**
      * Escribe objetos de tipo Persona en el fichero que le pasa por parámetro.
      * @param f 
      */
-    public void llenarFichero(File f){
+    public void llenarFichero(File f) throws IOException{
         
         personas.add(p1);
         personas.add(p2);
@@ -46,12 +50,15 @@ public class Modelo {
         
         for (Persona p : personas) {
             
-            try {
-                BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+            Path path = Paths.get(f.getAbsolutePath());
+                boolean finalizar=false;
+            
+            try (BufferedWriter bw = Files.newBufferedWriter(path, StandardOpenOption.APPEND, StandardOpenOption.CREATE)){
                 //PrintWriter pw = new PrintWriter(bw);
+                
                 bw.write(p.getNombre()+";"+p.getDni()+";"+p.getEdad()+";"+p.getPeso()+";"+p.getAltura()+"\n");
                 bw.close();
-                //no funciona, sobreescribe y solo guarda el último!
+
                 } catch (IOException ex) {
                     System.out.println(ex);
             }
@@ -59,13 +66,13 @@ public class Modelo {
     }
     
     /**
-     * A partir de un fichero crea objetos de tipo persona, los añade a un ArrayList y luego los muestra.
+     * A partir de un fichero crea objetos de tipo persona, los añade a un ArrayList y luego los muestra llamando a la función de la vista.
      * @param f
      * @throws FileNotFoundException
      * @throws IOException 
      */
     public void mostrarFichero(File f) throws FileNotFoundException, IOException{
-        
+ 
         Path path = Paths.get(f.getAbsolutePath());
         
         try (BufferedReader br = Files.newBufferedReader(path)) {
@@ -79,14 +86,9 @@ public class Modelo {
                  Persona p = new Persona(datosPersona[0],datosPersona[1],Integer.parseInt(datosPersona[2]),Integer.parseInt(datosPersona[3]),Double.parseDouble(datosPersona[4]));
                  personas.add(p);
                  System.out.println("Ahora estoy creando personas");
-                }
-                
-                //añadir en la vista
-                for (Persona persona : personas) {
-                    System.out.println(persona.getNombre()+" "+persona.getDni()+" "+persona.getEdad()+" "+persona.getPeso()+" "+persona.getAltura());
-                }
+                }    
             }
-
+            v.mostrarFichero(personas);
         }
     }
 }

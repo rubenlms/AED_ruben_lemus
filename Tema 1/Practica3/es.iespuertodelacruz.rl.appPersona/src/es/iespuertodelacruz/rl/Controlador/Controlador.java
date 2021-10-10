@@ -9,6 +9,7 @@ import es.iespuertodelacruz.rl.Modelo.Modelo;
 import es.iespuertodelacruz.rl.Vista.Vista;
 import java.io.File;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -25,10 +26,10 @@ public class Controlador {
         this.vista = vista;
     }
     
-    public void saludar(){
-        vista.saludo();
-    }
-    
+    /**
+     * Llama al método que llena el fichero.
+     * @throws IOException 
+     */
     public void crearFichero() throws IOException{
         File personas = new File(vista.pedirRuta());
         //System.out.println(personas.getAbsolutePath() + " " + personas.getName());
@@ -36,8 +37,32 @@ public class Controlador {
         
     }
     
+    /**
+     * Muestra el contenido de un fichero.
+     * @throws IOException 
+     */
     public void mostrarFichero() throws IOException{
         File personas = new File("hola.txt");
         modelo.mostrarFichero(personas);
+    }
+    
+    /**
+     * Calcula el IMC a partir del peso y la altura
+     * @param peso
+     * @param altura
+     * @return 
+     */
+    public String getIMC(int peso, double altura){
+        DecimalFormat df = new DecimalFormat("#.00");
+        
+        double imc = 0;
+        
+        try {
+            imc = peso/Math.pow(altura, 2);
+        } catch (NullPointerException ex){
+            System.out.println(ex);
+        }
+        
+        return df.format(imc); 
     }
 }

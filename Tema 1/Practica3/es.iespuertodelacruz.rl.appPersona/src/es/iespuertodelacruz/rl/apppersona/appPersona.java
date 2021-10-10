@@ -25,9 +25,8 @@ public class appPersona {
         Modelo modelo = new Modelo();
         Controlador controlador = new Controlador(modelo, vista);
         
-        //controlador.saludar();
         //controlador.crearFichero();
-        controlador.mostrarFichero();
+        //controlador.mostrarFichero();
     }
     
 }
