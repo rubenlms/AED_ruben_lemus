@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.iespuertodelacruz.jc.monedasxml.entities;
+package es.iespuertodelacruz.rl.monedasxml.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
- * @author carlos
+ * @author ruben
  */
 @XmlRootElement(name="moneda")
 public class Moneda implements Serializable{

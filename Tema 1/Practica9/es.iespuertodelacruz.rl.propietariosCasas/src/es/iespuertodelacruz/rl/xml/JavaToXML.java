@@ -3,19 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.iespuertodelacruz.jc.monedasxml.xml;
-
-import java.io.StringWriter;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
+package es.iespuertodelacruz.rl.xml;
 
 /**
  *
- * @author carlos
+ * @author ruben
  */
-public interface JavaToXMLString<T> {
-
-    String objToStringXML( T obj);
+public interface JavaToXML<T> {
+    
+    String objToStringXML(T obj);
     
     T stringXMLToObj(String texto);
 }

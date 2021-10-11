@@ -3,38 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.iespuertodelacruz.jc.monedasxml.entities;
+package es.iespuertodelacruz.rl.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlElement;
+
 /**
  *
- * @author rubenlemusDAM
+ * @author ruben
  */
-
 @XmlRootElement(name="monedas")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Almacen implements Serializable {
     
-    ArrayList<Moneda>monedas;
+    ArrayList<Casa>casas;
 
-    public Almacen(ArrayList<Moneda> monedas) {
-        this.monedas = monedas;
+    public Almacen(ArrayList<Casa> casas) {
+        this.casas = casas;
     }
     
     public Almacen(){}
-    
-    //@XmlElement(name="monedas")
-    public void setMonedas(ArrayList<Moneda>monedas) {
-        this.monedas = monedas;
+
+    public ArrayList<Casa> getCasas() {
+        return casas;
     }
-    
-    public ArrayList<Moneda> getMoneda(){
-        return monedas;
+
+    public void setCasas(ArrayList<Casa> casas) {
+        this.casas = casas;
     }
 }

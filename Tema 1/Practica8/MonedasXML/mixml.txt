@@ -2,7 +2,7 @@
 <moneda>
     <historicos>
         <equivalenteEuro>2.3</equivalenteEuro>
-        <fecha>2021-10-11T16:54:08.491+01:00</fecha>
+        <fecha>2021-10-11T18:11:55.519+01:00</fecha>
         <idHistorico>1</idHistorico>
     </historicos>
     <idMoneda>1</idMoneda>

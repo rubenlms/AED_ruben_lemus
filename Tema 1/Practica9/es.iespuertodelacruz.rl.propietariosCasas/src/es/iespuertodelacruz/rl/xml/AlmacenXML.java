@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.iespuertodelacruz.jc.monedasxml.xml;
+package es.iespuertodelacruz.rl.xml;
 
-import es.iespuertodelacruz.jc.monedasxml.entities.Almacen;
-import es.iespuertodelacruz.jc.monedasxml.entities.Historico;
-import es.iespuertodelacruz.jc.monedasxml.entities.Moneda;
+import es.iespuertodelacruz.rl.entities.Almacen;
 import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -18,47 +16,45 @@ import javax.xml.bind.Unmarshaller;
 
 /**
  *
- * @author carlos
+ * @author ruben
  */
-public class HistoricoXML implements JavaToXMLString<Historico>{
+public class AlmacenXML implements JavaToXML<Almacen> {
 
     @Override
-    public String objToStringXML(Historico historico) {
+    public String objToStringXML(Almacen almacen) {
         JAXBContext contexto;
         Marshaller marshaller;
         OutputStream os=null;
         StringWriter sw = new StringWriter();
         try {
-            contexto =  JAXBContext.newInstance(historico.getClass());
+            contexto =  JAXBContext.newInstance(almacen.getClass());
             marshaller  = contexto.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            marshaller.marshal(historico, sw);
+         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            marshaller.marshal(almacen, sw);
         } catch (JAXBException ex) {
             System.out.println(ex);
-        }finally{
+        } finally{
             return sw.toString();
         }
     }
 
     @Override
-    public Historico stringXMLToObj(String textoXML) {
+    public Almacen stringXMLToObj(String textoXML) {
         JAXBContext contexto;
         Marshaller marshaller;
         StringReader sr = new StringReader(textoXML);
-        Historico historico = null;
+        Almacen almacen = null;
         try {
-            contexto =  JAXBContext.newInstance(Historico.class);
+            contexto =  JAXBContext.newInstance(Almacen.class);
             marshaller  = contexto.createMarshaller();
                         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT,Boolean.TRUE);
             Unmarshaller unmarshaller = contexto.createUnmarshaller();
-            historico = (Historico) unmarshaller.unmarshal(sr);
+            almacen = (Almacen) unmarshaller.unmarshal(sr);
         } catch (JAXBException ex) {
             System.out.println(ex);
-        }finally{
-            return historico;
+        } finally{
+            return almacen;
         }
     }
-    
-    
     
 }

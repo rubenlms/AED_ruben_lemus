@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package es.iespuertodelacruz.jc.monedasxml;
+package es.iespuertodelacruz.rl.monedasxml;
 
-import es.iespuertodelacruz.jc.monedasxml.entities.Historico;
-import es.iespuertodelacruz.jc.monedasxml.entities.Moneda;
-import es.iespuertodelacruz.jc.monedasxml.entities.Almacen;
-import es.iespuertodelacruz.jc.monedasxml.utils.ManejoFichero;
-import es.iespuertodelacruz.jc.monedasxml.xml.AlmacenXML;
-import es.iespuertodelacruz.jc.monedasxml.xml.HistoricoXML;
-import es.iespuertodelacruz.jc.monedasxml.xml.MonedaXML;
+import es.iespuertodelacruz.rl.monedasxml.entities.Historico;
+import es.iespuertodelacruz.rl.monedasxml.entities.Moneda;
+import es.iespuertodelacruz.rl.monedasxml.entities.Almacen;
+import es.iespuertodelacruz.rl.monedasxml.utils.ManejoFichero;
+import es.iespuertodelacruz.rl.monedasxml.xml.AlmacenXML;
+import es.iespuertodelacruz.rl.monedasxml.xml.HistoricoXML;
+import es.iespuertodelacruz.rl.monedasxml.xml.MonedaXML;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
  *
- * @author carlos
+ * @author ruben
  */
 public class MonedasXML {
 
@@ -30,13 +30,16 @@ public class MonedasXML {
         
         ArrayList<Moneda>monedas = null;
         
-        Almacen alm = new Almacen();
-        alm.setMonedas(monedas);
+        Almacen alm = new Almacen(monedas); //crea el almacen
         
         AlmacenXML almXML = new AlmacenXML();
         
+        String strXMLalmacen = almXML.objToStringXML(alm); //transforma el almacen a XML (Solo crea la etiqueta de cierre??)
+        System.out.println("CERO SOUT"+strXMLalmacen);
+        
         Moneda m = new Moneda(1,"libra","uk"); //crea una moneda nueva
-        //alm.getMoneda().add(m);
+        
+        //alm.getMoneda().add(m); //debería añadir la moneda al almacen PERO NO LO HACE
         
         MonedaXML monedaXML = new MonedaXML(); 
         
@@ -81,7 +84,7 @@ public class MonedasXML {
         );
         
         Moneda m3 = monedaXML.stringXMLToObj(mf.leerTodo()); //NO LEE!
-        System.out.println("SEXTO SOUT"+m3);
+        System.out.println("SEXTO SOUT"+m3.toString());
         
     }
     
