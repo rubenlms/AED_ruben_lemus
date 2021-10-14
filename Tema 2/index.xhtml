@@ -5,9 +5,13 @@
 		<meta name="author" content=" "/>
 		<title>this</title>
 		<style type="text/css">
-/*
-				Se debe realizar este ejercicio mediante display: table;
-			*/
+/*Se debe realizar este ejercicio mediante display: table;*/
+		.cajas{
+			border-radius: 5px outset red;
+			background-color: blue;
+			text-align: center;
+			display: table;
+		}
 		</style>
 	</head>
 	<body>
@@ -17,24 +21,33 @@
 
 		<div id="central" >
 
-				<div class="agregar">
+				<div class="cajas">
 					<h3>Agregar alumno</h3>
-							<p>Nombre:</p>
+						<label for="dni">DNI:</label>
+						<input type="text" name="dni"></input>
+						<label for="nombre">Nombre:</label>
+						<input type="text" name="nombre"></input>
+						<label for="apellidos">Apellidos:</label>
+						<input type="text" name="apellidos"></input>
+						<button type="submit">Agregar</button>
 				</div>
 
-				<div class="borrar">
+				<div class="cajas">
 					<h3>Borrar alumno</h3>
-
+						<form>
+								<label for="dni">DNI:</label>
+								<input type="text" name="dni"></input>
+						</form>
 						<p></p>
 				</div>
 
-				<div class="editar">
+				<div class="cajas">
 					<h3>Editar alumno</h3>
 
 						<p></p>
 				</div>
 
-				<div class="mostrar">
+				<div class="cajas">
 					<h3>Mostrar alumnos:</h3>
 
 						<p></p>
