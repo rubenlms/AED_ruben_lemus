@@ -6,7 +6,7 @@
     	</description>
     	<display-name>principal</display-name>
     	<servlet-name>principal</servlet-name>
-    	<servlet-class>es.iespuertodelacruz.rl.ForoServelts.principal</servlet-class>
+    	<servlet-class>es.iespuertodelacruz.rl.ForoServlets.principal</servlet-class>
     </servlet>
     <servlet-mapping>
     	<servlet-name>principal</servlet-name>

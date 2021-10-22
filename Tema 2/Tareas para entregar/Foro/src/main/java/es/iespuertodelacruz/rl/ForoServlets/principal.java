@@ -28,14 +28,17 @@ public class principal extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		
 	    ArrayList<String> mensajes = new ArrayList<>();
 	    
+	    request.setCharacterEncoding("UTF-8");
 		String mensaje = request.getParameter("nombre")+":"+request.getParameter("mensaje");
 		
 		mensajes.add(mensaje);
 		
-		request.getServletContext().setAttribute(mensaje, mensajes);
-		request.getRequestDispatcher("Vista.jsp").forward(request, response);
+		request.getServletContext().setAttribute("mensajes", mensajes);
+		//request.getRequestDispatcher("Vista.jsp").forward(request, response);
+		request.getRequestDispatcher("vista.jsp");
 	}
 
 }
