@@ -1,5 +1,6 @@
 package es.iespuertodelacruz.rl.ForoServlets;
 
+import java.io.IOException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -21,6 +22,14 @@ public class inicializadorAplicacion implements ServletContextListener {
      */
     public void contextDestroyed(ServletContextEvent sce)  { 
          // TODO Auto-generated method stub
+    	 ManejarFichero mf = new ManejarFichero("mensajes.txt");
+    	 sce.getServletContext().getAttribute("mensajes");
+    	 try {
+			mf.agregarTexto(sce.getServletContext().getAttribute("mensajes").toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 	/**
@@ -28,6 +37,9 @@ public class inicializadorAplicacion implements ServletContextListener {
      */
     public void contextInitialized(ServletContextEvent sce)  { 
          // TODO Auto-generated method stub
+    	
+    	ManejarFichero mf = new ManejarFichero("mensajes.txt");
+    	sce.getServletContext().setAttribute("ManejarFichero", mf);
     }
 	
 }
