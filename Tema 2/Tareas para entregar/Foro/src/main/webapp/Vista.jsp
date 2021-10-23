@@ -5,30 +5,32 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="estilos.css">
+<link rel="stylesheet" href="css/estilos.css">
 <title>Foro</title>
 </head>
 <body>
 	<h1>FORO</h1>
-	<h3>Introduzca aquí:</h3>
-	<div class="caja">
-    <form action="escribirMensaje" method="GET"> 
-        <label for="nombre">Su nombre:</label>
+
+<div class="foro">
+
+	<div class="datos">
+    <form action="principal" method="GET">
+      <label for="nombre">Nombre:</label><br>
 	    <input type="text" name="nombre" id="nombre"/><br>
-        <label for="mensaje">Su mensaje: </label>
-	    <input type="text" name="mensaje" id="mensaje"/><br>
-	    <br>
-	    <input type="submit" value="Enviar" />                            
+	    <textarea name="mensaje" id="mensaje" cols="40" rows="7"></textarea><br>
+	    <input type="submit" value="Enviar" />
     </form>
     </div>
     <br>
-    <h3>Mensajes:</h3>
-    <div class="caja">
-    <textarea rows="10" cols="40">
+
+    <div class="publicaciones">
+    <textarea rows="20" cols="100">
  		<c:forEach items="${mensajes}" var="linea">
 			${linea} <br>
 		</c:forEach>
 	</textarea>
 	</div>
+  
+</div>
 </body>
 </html>

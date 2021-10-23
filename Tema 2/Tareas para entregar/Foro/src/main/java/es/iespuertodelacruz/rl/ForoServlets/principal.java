@@ -26,12 +26,17 @@ public class principal extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		
-		
-	    ArrayList<String> mensajes = new ArrayList<>();
+	    ArrayList<String>mensajes= (ArrayList<String>) request.getServletContext().getAttribute("mensajes");
 	    
-	    request.setCharacterEncoding("UTF-8");
+	    if (mensajes==null) {
+	    	mensajes = new ArrayList<>();
+	    	request.getServletContext().setAttribute("mensajes",mensajes);
+	    }
+	    
+	    request.getRequestDispatcher("Vista.jsp").forward(request, response);
+	    
 		String mensaje = request.getParameter("nombre")+":"+request.getParameter("mensaje");
 		
 		mensajes.add(mensaje);
@@ -40,5 +45,21 @@ public class principal extends HttpServlet {
 		//request.getRequestDispatcher("Vista.jsp").forward(request, response);
 		request.getRequestDispatcher("vista.jsp");
 	}
-
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+		String user = request.getParameter("nombre");
+		String mensaje = request.getParameter("mensaje");
+		
+		if(request.getSession().getAttribute("nombre")==null) {
+			request.getSession().setAttribute("nombre", user);
+		}
+		
+		ArrayList<String>mensajes = (ArrayList<String>) request.getServletContext().getAttribute("mensajes");
+		mensajes.add(user+": "+mensaje);
+		
+		request.getServletContext().setAttribute("mensajes", mensajes);
+		response.sendRedirect("Vista.jsp");
+	}
 }
