@@ -11,8 +11,7 @@
 <form>
 	<label for="usuario">Inserte su nombre de usuario:</label>
 	<input type="text" name="usuario" id="usuario"/><br>
-	<!-- <input type="submit" value="Jugar" />-->
-	<a href="jugar.jsp" >Pulsa aquí para empezar a jugar!</a>
+	<input type="submit" value="jugar"/>
 	
 </form>
 </div>
