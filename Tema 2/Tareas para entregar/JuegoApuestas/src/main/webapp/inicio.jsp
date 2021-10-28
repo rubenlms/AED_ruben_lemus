@@ -8,7 +8,7 @@
 </head>
 <body>
 <div>
-<form>
+<form action="principal" method="POST">
 	<label for="usuario">Inserte su nombre de usuario:</label>
 	<input type="text" name="usuario" id="usuario"/><br>
 	<input type="submit" value="jugar"/>

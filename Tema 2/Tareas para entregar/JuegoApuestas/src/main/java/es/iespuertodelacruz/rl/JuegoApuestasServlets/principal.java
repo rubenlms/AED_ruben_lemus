@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.rl.JuegoApuestasServlets;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -33,6 +34,16 @@ public class principal extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		request.getRequestDispatcher("inicio.jsp").forward(request, response);
 		
+		String realPath = request.getServletContext().getRealPath(File.separator);
+		String publicFolder = realPath + "WEB-INF" + File.separator + "fichero.txt";
+		String privateFolder;
+		
+		File directorio = new File(publicFolder);
+		
+		if(!directorio.exists()) {
+			directorio.mkdir();
+		}
+		
 		HttpSession sesion = request.getSession();
 		String nick = (String) request.getSession().getAttribute("usuario");
 		
@@ -50,7 +61,7 @@ public class principal extends HttpServlet {
 		//se hace asi para ambos pq es para get y para post
 		
 		//ArrayList<Usuario>listaUsuarios = (ArrayList<Usuario>) request.getServletContext().getAttribute("listaUsuarios");
-		HashSet<String> nickUsados = (HashSet<String>) request.getServletContext().getAttribute("listaUsuarios");; //aqui para guaradar los nic, mejor que un AL
+		HashSet<String> nickUsados = (HashSet<String>) request.getServletContext().getAttribute("listaUsuarios"); //aqui para guaradar los nic, mejor que un AL
 		ArrayList<Integer>apuestas = new ArrayList<Integer>();//arraylist de apuestas con un long para las fechas
 		
 		HttpSession sesion = request.getSession();
@@ -67,12 +78,12 @@ public class principal extends HttpServlet {
 		String userName = request.getParameter("usuario");
 		
 		if(request.getSession().getAttribute("usuario")!=null && request.getParameter("usuario")!=null) {
-			//hay nick y hay sesión, hay que recoger las apuestas
+			//hay nick y hay sesiï¿½n, hay que recoger las apuestas
 		}
 		
 		if(request.getSession().getAttribute("usuario")!=null && request.getParameter("usuario")==null) { //si el usuario no tiene una sesiï¿½n crea una
 			
-			//hay sesión pero no hay parámetro, por lo que se añade a la sesión el nick
+			//hay sesiï¿½n pero no hay parï¿½metro, por lo que se aï¿½ade a la sesiï¿½n el nick
 			request.getSession().setAttribute("usuario", userName);
 			nickUsados.add(userName);
 			//System.currentTimeMillis();
@@ -90,9 +101,10 @@ public class principal extends HttpServlet {
 			sesion = request.getSession();
 			request.getSession().setAttribute("usuario", userName);
 			nickUsados.add(userName);
+			request.getSession().setAttribute("apuestas", apuestas);//crea un arraylist de apuestas al crear sesiÃ³n
 		}
 		
-		//a partir de aqui ir completando el código con el arraylist/treemap con las distintas apuestas
+		//a partir de aqui ir completando el cï¿½digo con el arraylist/treemap con las distintas apuestas
 	}
 	
 }

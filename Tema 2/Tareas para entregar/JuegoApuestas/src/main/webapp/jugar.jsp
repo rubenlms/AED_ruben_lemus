@@ -8,7 +8,7 @@
 </head>
 <body>
 <div>
-<form>
+<form action="principal" method="POST">
 	<label for="apuesta">Apuesta:</label>
 	<input type="text" name="apuesta" id="apuesta"/><br>
 	<input type="submit" value="Apostar" />
