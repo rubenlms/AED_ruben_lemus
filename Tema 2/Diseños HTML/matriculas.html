@@ -13,59 +13,57 @@
   <body>
     <div class="container-fluid fondo">
       <div id="titulo" class="container-fluid"><h1>Gestionar instituto</h1></div>
-			<div id="seccion" class="container-fluid"><h2>Alumnos</h2></div>
+			<div id="seccion" class="container-fluid"><h2>Matrículas</h2></div>
       <br/>
       <div id="general" class="flex-container">
         <div id="agregar" class="flex-item">
-        <h3>Agregar alumno</h3>
+        <h3>Agregar matrícula</h3>
         <form>
-					<label for="nombreAgregar">*Nombre:</label>
-          <input type="text" name="nombreAgregar"></input><br>
-					<label for="apellidosAgregar">*Apellidos:</label>
-          <input type="text" name="apellidosAgregar"></input><br>
-					<label for="nacimientoAgregar">*Nacimiento:</label>
-          <input type="text" name="nacimientoAgregar"></input><br>
-          <label for="dniAgregar">*DNI:</label>
+          <label for="dni">*DNI alumno:</label>
           <input type="text" name="dniAgregar"></input><br>
+          <label for="año">*Año:</label>
+          <input type="text" name="añoAgregar"></input><br>
+          <label for="asignaturas">*Asignaturas:</label>
+          <input type="text" name="asignaturasAgregar"></input><br>
           <br>
           <span><button name="agregarButton" class="btn btn-primary" type="submit">Agregar</button></span>
         </form>
       </div>
 
         <div id="borrar" class="flex-item">
-          <h3>Borrar alumno</h3>
+          <h3>Borrar matrícula</h3>
           <form>
-						<label for="dniBorrar">*DNI:</label>
-						<input type="text" name="dniBorrar"></input><br>
+            <label for="idMatricula">*ID Matrícula:</label>
+            <input type="text" name="idMatriculaBorrar"></input><br>
             <br>
             <button name="borrarButton" class="btn btn-primary" type="submit">Borrar</button>
           </form>
         </div>
 
         <div id="editar" class="flex-item">
-        <h3>Editar alumno</h3>
+        <h3>Editar matrícula</h3>
         <form>
-          <label for="nombreEditar">*Nombre:</label>
-          <input type="text" name="nombreEditar"></input><br>
-					<label for="apellidosEditar">*Apellidos:</label>
-          <input type="text" name="apellidosEditar"></input><br>
-					<label for="nacimientoEditar">*Nacimiento:</label>
-          <input type="text" name="nacimientoEditar"></input><br>
-          <label for="dniEditar">*DNI:</label>
+          <label for="idMatricula">*ID Matrícula:</label>
+          <input type="text" name="idMatriculaEditar"></input><br>
+          <label for="dni">*DNI alumno:</label>
           <input type="text" name="dniEditar"></input><br>
+          <label for="año">*Año:</label>
+          <input type="text" name="añoEditar"></input><br>
+          <label for="asignaturas">*Asignaturas:</label>
+          <input type="text" name="asignaturas"></input><br>
           <br>
           <button name="editarButton" class="btn btn-primary" type="submit">Editar</button>
         </form>
       </div>
 
       <div id="mostrar" class="flex-item">
-        <h3>Mostrar alumno</h3>
+        <h3>Mostrar matrícula</h3>
         <label>(Escribir en uno de los campos únicamente)</label>
         <form>
-					<label for="nombreMostrar">*Nombre:</label>
-          <input type="text" name="nombreMostrar"></input><br>
-          <label for="dniMostrar">*DNI:</label>
+          <label for="dni">*DNI alumno:</label>
           <input type="text" name="dniMostrar"></input><br>
+          <label for="año">*Año:</label>
+          <input type="text" name="añoMostrar"></input><br>
           <br>
           <button name="mostrarButton" class="btn btn-primary" type="submit">Mostrar</button>
         </form>
