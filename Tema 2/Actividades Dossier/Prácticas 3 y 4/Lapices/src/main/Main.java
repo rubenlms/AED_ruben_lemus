@@ -1,5 +1,6 @@
 package main;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.rl.modelo.GestorLapices;
@@ -16,11 +17,11 @@ public class Main {
 	      }        
 	    }  
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 		
 		Scanner sc = new Scanner(System.in);
-		GestorLapices gl = new GestorLapices("oficina","root","1q2w3e4r");
+		GestorLapices gl = new GestorLapices("oficina","root","");
 		
 		System.out.print("Introduzca el id del Lapiz a actualizar:");
 		int idUpdate = sc.nextInt();

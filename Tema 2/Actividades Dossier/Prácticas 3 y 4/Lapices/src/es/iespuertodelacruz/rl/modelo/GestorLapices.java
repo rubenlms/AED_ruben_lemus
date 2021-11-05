@@ -67,10 +67,11 @@ public class GestorLapices {
 	 * Devuelve un Lapiz que coincida con el id que le pasa por parï¿½metro
 	 * @param idBusqueda
 	 * @return objeto Lápiz
+	 * @throws SQLException 
 	 */
-	public Lapiz findbyID(int idBusqueda){
+	public Lapiz findbyID(int idBusqueda) throws SQLException{
     		
-			Lapiz lpz;
+			Lapiz lpz=null;
 			
     		Connection conexion = bd.getConection();
     		
@@ -98,7 +99,7 @@ public class GestorLapices {
 	 * @return status
 	 * @throws SQLException
 	 */
-	public boolean update(Lapiz lapizUP) {
+	public boolean update(Lapiz lapizUP) throws SQLException {
 		
 		int idLapiz = lapizUP.getIdLapiz();
 		String marca = lapizUP.getMarca();
@@ -134,8 +135,9 @@ public class GestorLapices {
 	 * Borra en la base de datos el lapiz buscando por el id introducido por parï¿½metro
 	 * @param idDelete
 	 * @return status
+	 * @throws SQLException 
 	 */
-	public boolean delete(int idDelete) {
+	public boolean delete(int idDelete) throws SQLException {
 			
     		Connection conexion = bd.getConection();
     		Statement s = conexion.createStatement();
@@ -158,10 +160,11 @@ public class GestorLapices {
 	 * Recibe un objeto lapiz y lo introduce en la BBDD
 	 * @param lapiz
 	 * @return
+	 * @throws SQLException 
 	 */
-	public Lapiz save(Lapiz lapiz) {
+	public Lapiz save(Lapiz lapiz) throws SQLException {
 		
-		Lapiz LapizSave;
+		Lapiz LapizSave=null;
 		
 		Connection conexion = bd.getConection();
 		Statement s = conexion.createStatement();
@@ -169,7 +172,7 @@ public class GestorLapices {
 		try {
 			String sql = "INSERT INTO lapices (marca, numero) " 
 					+ "VALUES ("+lapiz.getMarca()+", "+lapiz.getNumero()+");";
-			s.executeUpdate(sql2, Statement.RETURN_GENERATED_KEYS);
+			s.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
 			
 			ResultSet rs = s.getGeneratedKeys();
 			
