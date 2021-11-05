@@ -8,15 +8,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import es.iespuertodelacruz.rl.*;
+import es.iespuertodelacruz.rl.dao.CRUD;
 import es.iespuertodelacruz.rl.utils.BaseDeDatos;
-import modelo.Lapiz;
+import es.iespuertodelacruz.rl.modelo.Lapiz;
 
+//public class GestorLapices implements CRUD {
 public class GestorLapices {
 	
 	BaseDeDatos bd;
 	
 	/**
-	 * Constructor de la clase con la BBDD, el usuario y su contraseña.
+	 * Constructor de la clase con la BBDD, el usuario y su contraseï¿½a.
 	 * @param db
 	 * @param user
 	 * @param password
@@ -38,7 +40,7 @@ public class GestorLapices {
 	 * @return
 	 * @throws SQLException
 	 */
-	public ArrayList<Lapiz> leerTodo() throws SQLException{
+	public ArrayList<Lapiz> findAll() throws SQLException{
 		
 		ArrayList<Lapiz>lapices = new ArrayList();
 		Connection conexion = bd.getConection(); //para tener los valores de la bbdd
@@ -62,10 +64,9 @@ public class GestorLapices {
 	}
 	
 	/**
-	 * Devuelve un Lapiz que coincida con el id que le pasa por parámetro
-	 * @param marcaBusqueda
-	 * @return
-	 * @throws SQLException
+	 * Devuelve un Lapiz que coincida con el id que le pasa por parï¿½metro
+	 * @param idBusqueda
+	 * @return objeto Lápiz
 	 */
 	public Lapiz findbyID(int idBusqueda){
     		
@@ -92,12 +93,12 @@ public class GestorLapices {
 	}
 	
 	/**
-	 * Devuelve un objeto Lápiz con las modificaciones que recibe
-	 * @param marcaBusqueda
-	 * @return
+	 * Devuelve un objeto Lï¿½piz con las modificaciones que recibe
+	 * @param lapizUP
+	 * @return status
 	 * @throws SQLException
 	 */
-	public Lapiz update(Lapiz lapizUP) {
+	public boolean update(Lapiz lapizUP) {
 		
 		int idLapiz = lapizUP.getIdLapiz();
 		String marca = lapizUP.getMarca();
@@ -106,20 +107,19 @@ public class GestorLapices {
 		System.out.println("VALORES ACTUALES:\n"
 				+"ID: " + idLapiz
 				+"\nMarca: " + marca
-				+"\nNº: " + numLapiz);
+				+"\nN.: " + numLapiz);
 		
 		System.out.println("INTRODUZCA LOS NUEVOS VALORES: ");
-			marca = askString("Marca");
-			numLapiz = askInt("Número");
-			
-			Lapiz lapiz = new Lapiz(idLapiz, marca, numLapiz);
+			lapizUP.setMarca(askString("Marca"));
+			lapizUP.setNumero(askInt("Nï¿½mero"));
 			
     		Connection conexion = bd.getConection();
     		Statement s = conexion.createStatement();
+    		boolean status = false; //porque es una consulta de IUD?
     		
     		try {
     			s.executeUpdate("UPDATE oficina "
-    					+ "SET marca='"+marca+"', numero='"+numLapiz+"' "
+    					+ "SET marca='"+marca+"', numero="+numLapiz+" "
     					+ "WHERE idLapiz = "+idLapiz+";");
     		} catch (SQLException e) {}
 
@@ -127,19 +127,19 @@ public class GestorLapices {
         s.close();
         conexion.close();
 		
-		return lapiz;
+		return status;
 	}
 	
 	/**
-	 * Borra en la base de datos el lapiz buscando por el id introducido por parámetro
-	 * @param marcaBusqueda
-	 * @return
-	 * @throws SQLException
+	 * Borra en la base de datos el lapiz buscando por el id introducido por parï¿½metro
+	 * @param idDelete
+	 * @return status
 	 */
-	public void delete(int idDelete) {
+	public boolean delete(int idDelete) {
 			
     		Connection conexion = bd.getConection();
     		Statement s = conexion.createStatement();
+    		boolean status = false; //porque es una consulta de IUD?
     		
     		try {
     			s.executeUpdate("DELETE FROM oficina "
@@ -149,7 +149,43 @@ public class GestorLapices {
         
         s.close();
         conexion.close();
+        
+        return status;
 		
+	}
+	
+	/**
+	 * Recibe un objeto lapiz y lo introduce en la BBDD
+	 * @param lapiz
+	 * @return
+	 */
+	public Lapiz save(Lapiz lapiz) {
+		
+		Lapiz LapizSave;
+		
+		Connection conexion = bd.getConection();
+		Statement s = conexion.createStatement();
+		
+		try {
+			String sql = "INSERT INTO lapices (marca, numero) " 
+					+ "VALUES ("+lapiz.getMarca()+", "+lapiz.getNumero()+");";
+			s.executeUpdate(sql2, Statement.RETURN_GENERATED_KEYS);
+			
+			ResultSet rs = s.getGeneratedKeys();
+			
+			while(rs.next()) {
+				int id = rs.getInt(1);
+				LapizSave.setIdLapiz(id);
+				LapizSave.setMarca(lapiz.getMarca());
+				LapizSave.setNumero(lapiz.getNumero());
+			}
+			
+			s.close();
+			conexion.close();
+			
+		} catch (SQLException e) {}
+		
+		return LapizSave;
 	}
 	
 	/**
@@ -178,5 +214,31 @@ public class GestorLapices {
 		
 		return valor;
 	}
+	
+	/*
+	@Override
+	public Object findbyID(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object save(Object obj) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean update(Object obj) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(Object id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	*/
 
 }
