@@ -9,7 +9,7 @@ public class Alumno {
 	String nombre;
 	String apellidos;
 	Date fechaNacimiento;
-	ArrayList<Matricula>matriculas;
+	//ArrayList<Matricula>matriculas;
 	
 	/**
 	 * Constructor de la clase Alumno
@@ -19,13 +19,12 @@ public class Alumno {
 	 * @param fechaNacimiento
 	 * @param matriculas
 	 */
-	public Alumno(String dni, String nombre, String apellidos, Date fechaNacimiento, ArrayList<Matricula> matriculas) {
+	public Alumno(String dni, String nombre, String apellidos, Date fechaNacimiento) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
-		this.matriculas = matriculas;
 	}
 	
 	public Alumno() {}
@@ -65,14 +64,5 @@ public class Alumno {
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-
-	public ArrayList<Matricula> getMatriculas() {
-		return matriculas;
-	}
-
-	public void setMatriculas(ArrayList<Matricula> matriculas) {
-		this.matriculas = matriculas;
-	}
-	
 
 }

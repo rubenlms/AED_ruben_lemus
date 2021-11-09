@@ -140,9 +140,11 @@ public class MatriculaDAO implements CRUD<Matricula, String>{
 						obj.getAlumno().getDni(),
 						obj.getAlumno().getNombre(),
 						obj.getAlumno().getApellidos(),
-						obj.getAlumno().getFechaNacimiento(),
-						null);
+						obj.getAlumno().getFechaNacimiento()
+						);
 				savedMatricula.setAlumno(alumnoSaved);
+				AlumnoDAO alumnoDAO = new AlumnoDAO(bd);
+				//alumnoDAO.findbyID()-> se le pasa el dni
 				savedMatricula.setYear(obj.getYear());
 			}
 		}

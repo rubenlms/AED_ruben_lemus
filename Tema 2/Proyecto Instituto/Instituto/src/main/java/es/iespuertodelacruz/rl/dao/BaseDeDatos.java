@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.rl.utils;
+package es.iespuertodelacruz.rl.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -39,6 +39,7 @@ public class BaseDeDatos {
 	 */
 	public Connection getConection() {
 		
+		//synchronized(basicDataSource){ //para que haya concurrencia -> IMPLEMENTAR
 		Connection conexion = null;
         try {
             conexion = DriverManager.getConnection(nameDB,user,password);

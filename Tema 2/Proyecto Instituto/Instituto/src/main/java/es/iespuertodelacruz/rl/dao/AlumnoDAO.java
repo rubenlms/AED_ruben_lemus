@@ -7,10 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import es.iespuertodelacruz.rl.entities.Alumno;
 
 public class AlumnoDAO implements CRUD<Alumno, String>{
@@ -59,7 +56,7 @@ public class AlumnoDAO implements CRUD<Alumno, String>{
 	        	String nombre = rs.getString("nombre");
 	        	String apellidos = rs.getString("apellidos");
 	        	Date fechaNacimiento = rs.getDate("fechanacimiento");
-	        	alumno = new Alumno(dni, nombre, apellidos, fechaNacimiento, null);//arraylist null?
+	        	alumno = new Alumno(dni, nombre, apellidos, fechaNacimiento);//arraylist null?
 	        }
 	    
 		} catch(SQLException e) {}
@@ -89,7 +86,7 @@ public class AlumnoDAO implements CRUD<Alumno, String>{
 	        	String nombre = rs.getString("nombre");
 	        	String apellidos = rs.getString("apellidos");
 	        	Date fechaNacimiento = rs.getDate("fechanacimiento");
-	        	Alumno alumno = new Alumno(dni, nombre, apellidos, fechaNacimiento, null); //arraylist?
+	        	Alumno alumno = new Alumno(dni, nombre, apellidos, fechaNacimiento);
 	        	alumnos.add(alumno);
 	        	}
 	        
@@ -127,23 +124,87 @@ public class AlumnoDAO implements CRUD<Alumno, String>{
 				savedAlumno.setNombre(obj.getNombre());
 				savedAlumno.setApellidos(obj.getApellidos());
 				savedAlumno.setFechaNacimiento(obj.getFechaNacimiento());
+				//savedAlumno.setFechaNacimiento(obj.getFechaNacimiento().getTime());-> para guardar como un long
 			}
 			
 		} catch (SQLException e) {}
 		
 		return savedAlumno;
 	}
-
+	
+	/**
+	 * Actualiza un registro de la tabla Alumno
+	 */
 	@Override
 	public boolean update(Alumno obj) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		String dni = obj.getDni();
+		String nombre = obj.getNombre();
+		String apellidos = obj.getApellidos();
+		Date fechaNacimiento = obj.getFechaNacimiento();
+		
+		boolean status = false;
+		int resultado;
+		
+		String sql = "UPDATE alumnos "
+				+ "SET dni=?, nombre=?, apellidos=?, fechaNacimiento=?"
+				+ "WHERE dni = ?";
+		
+		String sqlUpdate;//HACER EL UPDATE EN LA OTRA TABLA
+		
+		try (
+				Connection conexion = bd.getConection();
+		        PreparedStatement ps = conexion.prepareStatement(sql);
+			){
+			
+			ps.setString(1, dni);
+			ps.setString(2, nombre);
+			ps.setString(3, apellidos);
+			ps.setDate(4, fechaNacimiento);
+			ps.setString(5, dni); //referencia a tomar en el update???
+			
+			resultado = ps.executeUpdate(sql);
+			
+			if(resultado>0) {
+				status=true;
+			}
+			
+		} catch (SQLException e) {}
+    
+		return status;
 	}
-
+	
+	/**
+	 * Borra un registro de la BBDD
+	 */
 	@Override
 	public boolean delete(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		boolean status = false;
+		int resultado;
+		
+		String sql = "DELETE FROM alumnos "
+					+ "WHERE dni = ?";
+		
+		//borrar tambien de la tabla asigantura alumno?
+		
+		try (
+				Connection conexion = bd.getConection();
+		        PreparedStatement ps = conexion.prepareStatement(sql);
+			){
+			
+			ps.setInt(1, Integer.parseInt(id));
+			
+			resultado = ps.executeUpdate(sql);
+			
+			if(resultado>0) {
+				status=true;
+			}
+			
+		} catch (SQLException e) {}
+    
+		return status;
+	
 	}
 
 }
