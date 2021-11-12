@@ -150,8 +150,6 @@ public class AlumnoDAO implements CRUD<Alumno, String>{
 				+ "SET dni=?, nombre=?, apellidos=?, fechaNacimiento=?"
 				+ "WHERE dni = ?";
 		
-		String sqlUpdate;//HACER EL UPDATE EN LA OTRA TABLA
-		
 		try (
 				Connection conexion = bd.getConection();
 		        PreparedStatement ps = conexion.prepareStatement(sql);
@@ -186,14 +184,18 @@ public class AlumnoDAO implements CRUD<Alumno, String>{
 		String sql = "DELETE FROM alumnos "
 					+ "WHERE dni = ?";
 		
-		//borrar tambien de la tabla asigantura alumno?
+		String sqlMat = "DELETE FROM matriculas"
+				+" WHERE dni = ?";
 		
 		try (
 				Connection conexion = bd.getConection();
 		        PreparedStatement ps = conexion.prepareStatement(sql);
+				PreparedStatement ps2 = conexion.prepareStatement(sqlMat);
 			){
 			
 			ps.setInt(1, Integer.parseInt(id));
+			
+			ps2.setInt(1, Integer.parseInt(id));
 			
 			resultado = ps.executeUpdate(sql);
 			

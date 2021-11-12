@@ -21,7 +21,8 @@
       <div id="general" class="flex-container">
         <div id="agregar" class="flex-item">
         <h3>Agregar alumno</h3>
-        <form>
+        
+        <form action="agregaralumno" method="POST">
 					<label for="nombreAgregar">*Nombre:</label>
           <input type="text" name="nombreAgregar"></input><br>
 					<label for="apellidosAgregar">*Apellidos:</label>
@@ -37,7 +38,8 @@
 
         <div id="borrar" class="flex-item">
           <h3>Borrar alumno</h3>
-          <form>
+          
+          <form action="borraralumno" method="POST">
 						<label for="dniBorrar">*DNI:</label>
 						<input type="text" name="dniBorrar"></input><br>
             <br>
@@ -47,7 +49,8 @@
 
         <div id="editar" class="flex-item">
         <h3>Editar alumno</h3>
-        <form>
+        
+        <form action="editaralumno" method="POST">
           <label for="nombreEditar">*Nombre:</label>
           <input type="text" name="nombreEditar"></input><br>
 					<label for="apellidosEditar">*Apellidos:</label>
@@ -64,7 +67,8 @@
       <div id="mostrar" class="flex-item">
         <h3>Mostrar alumno</h3>
         <label>(Escribir en uno de los campos únicamente)</label>
-        <form>
+        
+        <form action="mostraralumno" method="POST">
 					<label for="nombreMostrar">*Nombre:</label>
           <input type="text" name="nombreMostrar"></input><br>
           <label for="dniMostrar">*DNI:</label>

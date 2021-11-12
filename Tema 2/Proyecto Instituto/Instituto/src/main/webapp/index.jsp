@@ -18,10 +18,13 @@
   <body>
     <div class="fondo">
       <h1>Gestionar alumnos</h1>
-      <div class="container-md button-container" >
-        <button type="button" class="btn btn-secondary">Gestionar alumnos</button>
-        <button type="button" class="btn btn-secondary">Gestionar asignaturas</button>
-        <button type="button" class="btn btn-secondary">Gestionar matrículas</button>
+      <div class="container-md button-container" ><!--  
+        <button type="button" class="btn btn-secondary" name="gesalumno">Gestionar alumnos</button>
+        <button type="button" class="btn btn-secondary" name="gesasignatura">Gestionar asignaturas</button>
+        <button type="button" class="btn btn-secondary" name="gesmatricula">Gestionar matrículas</button>-->
+        <a href="alumnos.jsp" >Gestionar alumnos</a>
+        <a href="asignaturas.jsp" >Gestionar asignaturas</a>
+        <a href="matriculas.jsp" >Gestionar matrículas</a>
       </div>
     </div>
   </body>
