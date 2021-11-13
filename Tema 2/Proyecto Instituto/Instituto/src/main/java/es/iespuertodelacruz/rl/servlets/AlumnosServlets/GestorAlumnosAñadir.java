@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.iespuertodelacruz.rl.dao.AlumnoDAO;
+import es.iespuertodelacruz.rl.dao.AsignaturaDAO;
 import es.iespuertodelacruz.rl.dao.BaseDeDatos;
+import es.iespuertodelacruz.rl.dao.MatriculaDAO;
 import es.iespuertodelacruz.rl.entities.Alumno;
 
 /**
@@ -48,8 +50,10 @@ public class GestorAlumnosAñadir extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
-		BaseDeDatos bd = new BaseDeDatos();
-		AlumnoDAO alumnoDAO = new AlumnoDAO(bd);
+		BaseDeDatos gc =  (BaseDeDatos)request.getServletContext().getAttribute("gc");
+		AlumnoDAO alumnoDAO = new AlumnoDAO(gc);
+		AsignaturaDAO asignaturaDAO = new AsignaturaDAO(gc);
+		MatriculaDAO matriculaDAO = new MatriculaDAO(gc);
 		
 		String dni = request.getParameter("dniAgregar");
 		String nombre = request.getParameter("nombreAgregar");
@@ -59,7 +63,8 @@ public class GestorAlumnosAñadir extends HttpServlet {
 		DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Date nacimiento = (Date) formatoFecha.parse(fechaNacimiento);
 		
-		Alumno alumno = new Alumno(dni, nombre, apellidos, nacimiento); //tratar la fecha?
+		Alumno alumno = new Alumno(dni, nombre, apellidos, (java.sql.Date) nacimiento); //tratar la fecha?
+		alumnoDAO.save(alumno);
 	}
 
 }

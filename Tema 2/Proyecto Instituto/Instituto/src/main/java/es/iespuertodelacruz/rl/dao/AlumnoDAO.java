@@ -65,6 +65,39 @@ public class AlumnoDAO implements CRUD<Alumno, String>{
 	}
 	
 	/**
+	 * Busca a un alumno a través de su nombre
+	 * @param nombre
+	 * @return
+	 */
+	public Alumno findbyname(String name) {
+		Alumno alumno=null;
+		
+		String sql = "SELECT dni, nombre, apellidos, fechanacimiento FROM alumnos"
+        		+ " WHERE nombre LIKE ?";
+		
+		try (
+		Connection conexion = bd.getConection();
+        PreparedStatement ps = conexion.prepareStatement(sql);
+		)
+		
+		{	
+			ps.setString(1, name); 
+			ResultSet rs = ps.executeQuery(sql);
+	        
+	        while(rs.next()){
+	        	String dni = rs.getString("dni");
+	        	String nombre = rs.getString("nombre");
+	        	String apellidos = rs.getString("apellidos");
+	        	Date fechaNacimiento = rs.getDate("fechanacimiento");
+	        	alumno = new Alumno(dni, nombre, apellidos, fechaNacimiento);
+	        }
+	    
+		} catch(SQLException e) {}
+	
+		return alumno;
+	}
+	
+	/**
 	 * Devuelve todos los alumnos registrados en la BBDD
 	 */
 	@Override

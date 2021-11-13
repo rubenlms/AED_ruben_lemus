@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.apache.commons.dbcp.BasicDataSource;
+
 public class BaseDeDatos {
 	
 	String nameDB;
@@ -26,11 +28,20 @@ public class BaseDeDatos {
 	 * @param user
 	 * @param password
 	 */
+	BasicDataSource basicDataSource;
+	
 	public BaseDeDatos(String nameDB, String user, String password) {
 		this.nameDB = "jdbc:mysql://localhost/" + nameDB + "?serverTimezone=UTC";
 		this.user = user;
 		this.password = password;
 		cargarDriverMysql();
+		
+		basicDataSource = new BasicDataSource();
+		basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		basicDataSource.setUrl(nameDB);
+		
+		basicDataSource.setUsername(user);
+		basicDataSource.setPassword(password);		
 	}
 	
 	/**
@@ -42,7 +53,7 @@ public class BaseDeDatos {
 		//synchronized(basicDataSource){ //para que haya concurrencia -> IMPLEMENTAR
 		Connection conexion = null;
         try {
-            conexion = DriverManager.getConnection(nameDB,user,password);
+            conexion = basicDataSource.getConnection();
 
         } catch (SQLException ex) { 
         	ex.printStackTrace(); 

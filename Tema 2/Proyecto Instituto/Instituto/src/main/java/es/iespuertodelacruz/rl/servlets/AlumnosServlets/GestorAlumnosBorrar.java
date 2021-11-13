@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import es.iespuertodelacruz.rl.dao.AlumnoDAO;
+import es.iespuertodelacruz.rl.dao.AsignaturaDAO;
 import es.iespuertodelacruz.rl.dao.BaseDeDatos;
+import es.iespuertodelacruz.rl.dao.MatriculaDAO;
 
 /**
  * Servlet implementation class GestorAlumnosBorrar
@@ -39,11 +41,15 @@ public class GestorAlumnosBorrar extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		BaseDeDatos gc =  (BaseDeDatos)request.getServletContext().getAttribute("gc");
+		AlumnoDAO alumnoDAO = new AlumnoDAO(gc);
+		AsignaturaDAO asignaturaDAO = new AsignaturaDAO(gc);
+		MatriculaDAO matriculaDAO = new MatriculaDAO(gc);
 		
 		String dni = request.getParameter("dniAgregar");
 		
-		BaseDeDatos bd = new BaseDeDatos();
-		AlumnoDAO alumnoDAO = new AlumnoDAO(bd);
+		BaseDeDatos bd = new BaseDeDatos(null, null, null);
+		
 		
 		alumnoDAO.delete(dni);
 	}
