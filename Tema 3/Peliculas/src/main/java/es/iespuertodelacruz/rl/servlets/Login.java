@@ -55,7 +55,7 @@ public class Login extends HttpServlet {
 			
 			if(staffFind != null) {
 											
-				boolean okLogin = BCrypt.checkpw(paramPassword,staffFind.getPassword());
+				boolean okLogin = BCrypt.checkpw(paramPassword, staffFind.getPassword());
 
 				if(okLogin) {
 					request.getSession().setAttribute("staff", staff);
@@ -63,8 +63,11 @@ public class Login extends HttpServlet {
 					 * Desarrollar aqui para que muestre en staff.jsp una lista con
 					 * las películas disponibles.
 					 */
-					redirect="staff/staff.jsp";
-				}
+					StaffRepository sr = new StaffRepository(emf);
+					List<Staff>findAll = sr.findAll();
+					request.getSession().setAttribute("listastaff", findAll);
+					redirect="user/staff.jsp";
+	//			}
 				
 			}
 		}

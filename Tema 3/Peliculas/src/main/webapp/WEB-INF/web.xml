@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<filter>
+		<description>
+		</description>
+		<display-name>AutenticacionUsuario</display-name>
+		<filter-name>AutenticacionUsuario</filter-name>
+		<filter-class>es.iespuertodelacruz.rl.repositories.AutenticacionUsuario</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AutenticacionUsuario</filter-name>
+		<url-pattern>/AutenticacionUsuario</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AutenticacionUsuario</filter-name>
+		<servlet-name>Login</servlet-name>
+	</filter-mapping>
 	<listener>
 		<listener-class>es.iespuertodelacruz.rl.servlets.IniciarEntityManagerFactory</listener-class>
 	</listener>
@@ -10,6 +25,20 @@
 		<servlet-name>Login</servlet-name>
 		<servlet-class>es.iespuertodelacruz.rl.servlets.Login</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>StaffController</display-name>
+		<servlet-name>StaffController</servlet-name>
+		<servlet-class>es.iespuertodelacruz.rl.servlets.StaffController</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>StaffServlet</display-name>
+		<servlet-name>StaffServlet</servlet-name>
+		<servlet-class>es.iespuertodelacruz.rl.servlets.StaffController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/Login</url-pattern>
@@ -17,6 +46,22 @@
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>StaffController</servlet-name>
+		<url-pattern>/StaffController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>StaffServlet</servlet-name>
+		<url-pattern>/StaffServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>StaffServlet</servlet-name>
+		<url-pattern>/user/staff</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>StaffServlet</servlet-name>
+		<url-pattern>/staff</url-pattern>
 	</servlet-mapping>
     <session-config>
         <session-timeout>

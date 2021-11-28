@@ -24,7 +24,12 @@ public class Category implements Serializable {
 	private Timestamp lastUpdate;
 
 	private String name;
-
+	/*
+	@ManyToMany
+	@JoinTable(name=""
+	)COPIAR DE LOS APUNTES (P. 27)LA RELACIÓN ENTRE TABLAS DE LAS QUE NO SE IMPORTÓ COMO CLASE
+	
+	*/
 	public Category() {
 	}
 
