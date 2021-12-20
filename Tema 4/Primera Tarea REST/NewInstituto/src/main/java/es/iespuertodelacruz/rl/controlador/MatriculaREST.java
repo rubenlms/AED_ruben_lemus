@@ -36,12 +36,13 @@ public class MatriculaREST {
 	
 	@GetMapping
 	public List<Matricula> getAll(){
-		
-		ArrayList<Matricula> Matriculas = new ArrayList<Matricula>();
-	
-		matriculaservice.findAll().forEach(mat -> Matriculas.add((Matricula)mat));
 
-		return Matriculas;
+		logger.info("llega a consulta5r todas las matrículas");
+		ArrayList<Matricula> matriculas = new ArrayList<Matricula>();
+	
+		matriculaservice.findAll().forEach(mat -> matriculas.add((Matricula)mat));
+
+		return matriculas;
 	}
 	
 	
