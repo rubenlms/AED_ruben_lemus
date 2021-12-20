@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.qos.logback.classic.Logger;
+import es.iespuertodelacruz.rl.entities.Alumno;
 import es.iespuertodelacruz.rl.entities.Matricula;
+import es.iespuertodelacruz.rl.service.AlumnoService;
 import es.iespuertodelacruz.rl.service.MatriculaService;
 
 @RestController
@@ -30,12 +32,12 @@ public class MatriculaREST {
 	
 	@Autowired
 	MatriculaService matriculaservice;
+	AlumnoService alumnoservice;
 	
 	@GetMapping
 	public List<Matricula> getAll(){
 		
 		ArrayList<Matricula> Matriculas = new ArrayList<Matricula>();
-		//logger.info("si queremos hacer debug por ejemplo");
 	
 		matriculaservice.findAll().forEach(mat -> Matriculas.add((Matricula)mat));
 
@@ -58,9 +60,22 @@ public class MatriculaREST {
 	@PostMapping
 	public ResponseEntity<?> save(@RequestBody Matricula matriculaDTO){
 		Matricula mat;
+		Alumno alumno;
 		mat.setIdmatricula(matriculaDTO.getIdmatricula());
 		mat.setYear(matriculaDTO.getYear());
-		//mat.setAlumno(null);
+		for(Alumno a: alumnoservice.findAll()) {
+			ArrayList<Matricula>matriculas = (ArrayList<Matricula>) a.getMatriculas();
+			for(Matricula m: matriculas) {
+				if(m.getIdmatricula()==matriculaDTO.getIdmatricula()) {
+					
+					alumno.setDni(a.getDni()),
+							a.getNombre(),
+							a.getApellidos(),
+							a.getFechanacimiento());
+				}
+			}
+		}
+		//mat.setAlumno(alumno);
 		matriculaservice.save(mat);
 		
 		return ResponseEntity.ok().body(new Matricula(mat));
