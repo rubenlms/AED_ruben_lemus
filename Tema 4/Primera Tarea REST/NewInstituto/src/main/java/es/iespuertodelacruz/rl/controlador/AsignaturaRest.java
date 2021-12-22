@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.qos.logback.classic.Logger;
+import es.iespuertodelacruz.rl.dto.AsignaturaDTO;
 import es.iespuertodelacruz.rl.entities.Asignatura;
 import es.iespuertodelacruz.rl.service.AsignaturaService;
 
@@ -41,6 +42,20 @@ public class AsignaturaRest {
 		return Asignaturas;
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> getbyID(@PathVariable int id){	
+		
+		Optional<Asignatura> optM = asignaturaservice.findById(id);
+		
+		if(optM.isPresent()) {
+			AsignaturaDTO aDTO = new AsignaturaDTO(optM.get());
+			return ResponseEntity.ok().body(aDTO);
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("el id del registro no existe");
+		}
+		
+	}
+	
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id){
@@ -53,18 +68,18 @@ public class AsignaturaRest {
 		}
 	}
 	
-	/*
+	
 	@PostMapping
-	public ResponseEntity<?> save(@RequestBody Asignatura asignaturaDTO){
-		Asignatura asig;
-		asig.setIdasignatura(asignaturaDTO.getIdasignatura());
-		asig.setNombre(asignaturaDTO.getNombre());
-		asig.setCurso(asignaturaDTO.getCurso());
+	public ResponseEntity<?> save(@RequestBody Asignatura a){
+		Asignatura asig=new Asignatura();
+		asig.setIdasignatura(a.getIdasignatura());
+		asig.setNombre(a.getNombre());
+		asig.setCurso(a.getCurso());
 		
 		asignaturaservice.save(asig);
 		
-		return ResponseEntity.ok().body(new Asignatura(asig));
-	}*/
+		return ResponseEntity.ok().body(new AsignaturaDTO(asig));
+	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable int id,

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ch.qos.logback.classic.Logger;
-import es.iespuertodelacruz.rl.entities.Alumno;
+import es.iespuertodelacruz.rl.dto.MatriculaDTO;
 import es.iespuertodelacruz.rl.entities.Matricula;
 import es.iespuertodelacruz.rl.service.AlumnoService;
 import es.iespuertodelacruz.rl.service.MatriculaService;
@@ -45,6 +45,19 @@ public class MatriculaREST {
 		return matriculas;
 	}
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> getbyID(@PathVariable int id){	
+		
+		Optional<Matricula> optM = matriculaservice.findById(id);
+		
+		if(optM.isPresent()) {
+			MatriculaDTO aDTO = new MatriculaDTO(optM.get());
+			return ResponseEntity.ok().body(aDTO);
+		}else {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("el id del registro no existe");
+		}
+	}
+	
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id){
@@ -57,30 +70,19 @@ public class MatriculaREST {
 		}
 	}
 	
-	/*
+	
 	@PostMapping
-	public ResponseEntity<?> save(@RequestBody Matricula matriculaDTO){
-		Matricula mat;
-		Alumno alumno;
-		mat.setIdmatricula(matriculaDTO.getIdmatricula());
-		mat.setYear(matriculaDTO.getYear());
-		for(Alumno a: alumnoservice.findAll()) {
-			ArrayList<Matricula>matriculas = (ArrayList<Matricula>) a.getMatriculas();
-			for(Matricula m: matriculas) {
-				if(m.getIdmatricula()==matriculaDTO.getIdmatricula()) {
-					
-					alumno.setDni(a.getDni()),
-							a.getNombre(),
-							a.getApellidos(),
-							a.getFechanacimiento());
-				}
-			}
-		}
-		//mat.setAlumno(alumno);
+	public ResponseEntity<?> save(@RequestBody Matricula matricula){
+		Matricula mat = new Matricula();
+		
+		mat.setIdmatricula(matricula.getIdmatricula());
+		mat.setYear(matricula.getYear());
+		mat.setAlumno(matricula.getAlumno());
+	 
 		matriculaservice.save(mat);
 		
-		return ResponseEntity.ok().body(new Matricula(mat));
-	}*/
+		return ResponseEntity.ok().body(new MatriculaDTO(mat));
+	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable int id,
