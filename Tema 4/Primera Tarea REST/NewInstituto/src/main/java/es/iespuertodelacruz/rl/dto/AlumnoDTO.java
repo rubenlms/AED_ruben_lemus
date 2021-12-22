@@ -17,9 +17,9 @@ public class AlumnoDTO {
 
 	private String nombre;
 	
-	//private List<Matricula> matriculas;
+	private List<Matricula> matriculas;
 	
-	private List<Integer>matriculas;
+	private List<Integer>idmatriculas;
 
 	public AlumnoDTO(Alumno a) {
 		super();
@@ -29,9 +29,9 @@ public class AlumnoDTO {
 		this.fechanacimiento = a.getFechanacimiento();
 		ArrayList<Integer>matAlumno = new ArrayList<Integer>();
 		for(Matricula m : a.getMatriculas()) {
-			matriculas.add(m.getIdmatricula());
+			idmatriculas.add(m.getIdmatricula());
 		}
-		this.matriculas = matAlumno;
+		this.idmatriculas = matAlumno;
 	}
 
 	public String getDni() {
@@ -66,12 +66,20 @@ public class AlumnoDTO {
 		this.nombre = nombre;
 	}
 
-	public List<Integer> getMatriculas() {
+	public List<Matricula> getMatriculas() {
 		return matriculas;
 	}
 
-	public void setMatriculas(List<Integer> matriculas) {
+	public void setMatriculas(List<Matricula> matriculas) {
 		this.matriculas = matriculas;
 	}
 
+	public List<Integer> getIdmatriculas() {
+		return idmatriculas;
+	}
+
+	public void setIdmatriculas(List<Integer> idmatriculas) {
+		this.idmatriculas = idmatriculas;
+	}
+	
 }
