@@ -1,6 +1,7 @@
 package es.iespuertodelacruz.rl.dto;
 
 import es.iespuertodelacruz.rl.entities.Alumno;
+import es.iespuertodelacruz.rl.entities.Matricula;
 
 public class MatriculaDTO {
 	
@@ -8,13 +9,13 @@ public class MatriculaDTO {
 
 	private int year;
 	
-	private Alumno alumno;
+	private String dniAlumno;
 
-	public MatriculaDTO(int idmatricula, int year, Alumno alumno) {
+	public MatriculaDTO(Matricula m) {
 		super();
-		this.idmatricula = idmatricula;
-		this.year = year;
-		this.alumno.setDni(alumno.getDni());;
+		this.idmatricula = m.getIdmatricula();
+		this.year = m.getYear();
+		this.dniAlumno = m.getAlumno().getDni();
 	}
 
 	public int getIdmatricula() {
@@ -33,12 +34,13 @@ public class MatriculaDTO {
 		this.year = year;
 	}
 
-	public Alumno getAlumno() {
-		return alumno;
+	public String getDniAlumno() {
+		return dniAlumno;
 	}
 
-	public void setAlumno(Alumno alumno) {
-		this.alumno = alumno;
+	public void setDniAlumno(String dniAlumno) {
+		this.dniAlumno = dniAlumno;
 	}
+	
 
 }

@@ -1,8 +1,10 @@
 package es.iespuertodelacruz.rl.dto;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
+import es.iespuertodelacruz.rl.entities.Alumno;
 import es.iespuertodelacruz.rl.entities.Matricula;
 
 public class AlumnoDTO {
@@ -15,14 +17,21 @@ public class AlumnoDTO {
 
 	private String nombre;
 	
-	private List<Matricula> matriculas;
+	//private List<Matricula> matriculas;
+	
+	private List<Integer>matriculas;
 
-	public AlumnoDTO(String dni, String apellidos, BigInteger fechanacimiento, String nombre) {
+	public AlumnoDTO(Alumno a) {
 		super();
-		this.dni = dni;
-		this.apellidos = apellidos;
-		this.fechanacimiento = fechanacimiento;
-		this.nombre = nombre;
+		this.dni = a.getDni();
+		this.nombre = a.getNombre();
+		this.apellidos = a.getApellidos();
+		this.fechanacimiento = a.getFechanacimiento();
+		ArrayList<Integer>matAlumno = new ArrayList<Integer>();
+		for(Matricula m : a.getMatriculas()) {
+			matriculas.add(m.getIdmatricula());
+		}
+		this.matriculas = matAlumno;
 	}
 
 	public String getDni() {
@@ -56,7 +65,13 @@ public class AlumnoDTO {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
+
+	public List<Integer> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<Integer> matriculas) {
+		this.matriculas = matriculas;
+	}
 
 }

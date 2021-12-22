@@ -1,5 +1,7 @@
 package es.iespuertodelacruz.rl.dto;
 
+import es.iespuertodelacruz.rl.entities.Asignatura;
+
 public class AsignaturaDTO {
 	
 	private int idasignatura;
@@ -8,11 +10,11 @@ public class AsignaturaDTO {
 
 	private String nombre;
 
-	public AsignaturaDTO(int idasignatura, String curso, String nombre) {
+	public AsignaturaDTO(Asignatura a) {
 		super();
-		this.idasignatura = idasignatura;
-		this.curso = curso;
-		this.nombre = nombre;
+		this.idasignatura = a.getIdasignatura();
+		this.curso = a.getCurso();
+		this.nombre = a.getNombre();
 	}
 
 	public int getIdasignatura() {
