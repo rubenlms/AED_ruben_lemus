@@ -49,22 +49,21 @@ public class AlumnoRest {
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getbyID(@PathVariable String id){	
 		
-		Optional<Alumno> optM = alumnoservice.findById(id);
+		Optional<Alumno> optAlumno = alumnoservice.findById(id);
 		
-		if(optM.isPresent()) {
-			AlumnoDTO aDTO = new AlumnoDTO(optM.get());
+		if(optAlumno.isPresent()) {
+			AlumnoDTO aDTO = new AlumnoDTO(optAlumno.get());
 			return ResponseEntity.ok().body(aDTO);
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("el id del registro no existe");
 		}
-		
 	}
 	
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable String id){
-		Optional<Alumno> optM = alumnoservice.findById(id);
-		if(optM.isPresent()) {
+		Optional<Alumno> optAlumno = alumnoservice.findById(id);
+		if(optAlumno.isPresent()) {
 			alumnoservice.deleteById(id);
 			return ResponseEntity.ok("alumno con id:" + id + " borrado");
 		}else {
@@ -90,10 +89,10 @@ public class AlumnoRest {
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable String id,
 	@RequestBody AlumnoDTO alumnoDTO){
-		Optional<Alumno> optM = alumnoservice.findById(id);
+		Optional<Alumno> optAlumno = alumnoservice.findById(id);
 
-		if(optM.isPresent()) {
-			Alumno alum = optM.get();
+		if(optAlumno.isPresent()) {
+			Alumno alum = optAlumno.get();
 			
 			alum.setDni(alumnoDTO.getDni());
 			alum.setNombre(alumnoDTO.getNombre());

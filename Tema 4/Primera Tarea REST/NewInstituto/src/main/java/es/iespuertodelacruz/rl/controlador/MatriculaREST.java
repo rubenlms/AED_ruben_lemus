@@ -35,23 +35,27 @@ public class MatriculaREST {
 	AlumnoService alumnoservice;
 	
 	@GetMapping
-	public List<Matricula> getAll(){
+	public ResponseEntity<List<MatriculaDTO>> getAll(){
 
 		logger.info("llega a consulta5r todas las matrículas");
-		ArrayList<Matricula> matriculas = new ArrayList<Matricula>();
+		ArrayList<MatriculaDTO> matriculas = new ArrayList<MatriculaDTO>();
 	
-		matriculaservice.findAll().forEach(mat -> matriculas.add((Matricula)mat));
-
-		return matriculas;
+		matriculaservice.findAll().forEach(mat -> {
+			Matricula m = new Matricula();
+			MatriculaDTO mDTO = new MatriculaDTO(m);
+			matriculas.add((MatriculaDTO)mDTO);
+		});
+			
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(matriculas);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getbyID(@PathVariable int id){	
 		
-		Optional<Matricula> optM = matriculaservice.findById(id);
+		Optional<Matricula> optMatricula = matriculaservice.findById(id);
 		
-		if(optM.isPresent()) {
-			MatriculaDTO aDTO = new MatriculaDTO(optM.get());
+		if(optMatricula.isPresent()) {
+			MatriculaDTO aDTO = new MatriculaDTO(optMatricula.get());
 			return ResponseEntity.ok().body(aDTO);
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("el id del registro no existe");
@@ -61,8 +65,8 @@ public class MatriculaREST {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id){
-		Optional<Matricula> optM = matriculaservice.findById(id);
-		if(optM.isPresent()) {
+		Optional<Matricula> optMatricula = matriculaservice.findById(id);
+		if(optMatricula.isPresent()) {
 			matriculaservice.deleteById(id);
 			return ResponseEntity.ok("Matricula con id:" + id + " borrado");
 		}else {
@@ -87,9 +91,9 @@ public class MatriculaREST {
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable int id,
 	@RequestBody Matricula matriculaDTO){
-		Optional<Matricula> optM = matriculaservice.findById(id);
+		Optional<Matricula> optMatricula = matriculaservice.findById(id);
 
-		if(optM.isPresent()) {
+		if(optMatricula.isPresent()) {
 			Matricula mat = new Matricula();
 			mat.setIdmatricula(matriculaDTO.getIdmatricula());
 			mat.setYear(matriculaDTO.getYear());

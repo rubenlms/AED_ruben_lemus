@@ -33,22 +33,26 @@ public class AsignaturaRest {
 	AsignaturaService asignaturaservice;
 	
 	@GetMapping
-	public List<Asignatura> getAll(){
+	public ResponseEntity<List<AsignaturaDTO>> getAll(){
 		
-		ArrayList<Asignatura> Asignaturas = new ArrayList<Asignatura>();
+		ArrayList<AsignaturaDTO> asignaturas = new ArrayList<AsignaturaDTO>();
 	
-		asignaturaservice.findAll().forEach(asig -> Asignaturas.add((Asignatura)asig));
+		asignaturaservice.findAll().forEach(asig -> {
+			Asignatura a = new Asignatura();
+			AsignaturaDTO aDTO = new AsignaturaDTO(a);
+			asignaturas.add(aDTO);
+		});
 
-		return Asignaturas;
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(asignaturas);
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getbyID(@PathVariable int id){	
 		
-		Optional<Asignatura> optM = asignaturaservice.findById(id);
+		Optional<Asignatura> optAsignatura = asignaturaservice.findById(id);
 		
-		if(optM.isPresent()) {
-			AsignaturaDTO aDTO = new AsignaturaDTO(optM.get());
+		if(optAsignatura.isPresent()) {
+			AsignaturaDTO aDTO = new AsignaturaDTO(optAsignatura.get());
 			return ResponseEntity.ok().body(aDTO);
 		}else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("el id del registro no existe");
@@ -59,8 +63,8 @@ public class AsignaturaRest {
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id){
-		Optional<Asignatura> optM = asignaturaservice.findById(id);
-		if(optM.isPresent()) {
+		Optional<Asignatura> optAsignatura = asignaturaservice.findById(id);
+		if(optAsignatura.isPresent()) {
 			asignaturaservice.deleteById(id);
 			return ResponseEntity.ok("Asignatura con id:" + id + " borrada");
 		}else {
@@ -84,9 +88,9 @@ public class AsignaturaRest {
 	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@PathVariable int id,
 	@RequestBody Asignatura asignaturaDTO){
-		Optional<Asignatura> optM = asignaturaservice.findById(id);
+		Optional<Asignatura> optAsignatura = asignaturaservice.findById(id);
 
-		if(optM.isPresent()) {
+		if(optAsignatura.isPresent()) {
 			Asignatura asig = null;
 			asig.setIdasignatura(asignaturaDTO.getIdasignatura());
 			asig.setNombre(asignaturaDTO.getNombre());
