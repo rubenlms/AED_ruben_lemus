@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Biblioteca. Zona de operadores.</title>
 </head>
 <body>
 	<h2>Estás en operador!</h2>
+	<p>¿Qué desea hacer?</p>
+	
 </body>
 </html>
