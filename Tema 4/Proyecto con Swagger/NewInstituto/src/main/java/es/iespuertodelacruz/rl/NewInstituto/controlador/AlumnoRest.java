@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ch.qos.logback.classic.Logger;
 import es.iespuertodelacruz.rl.NewInstituto.dto.AlumnoDTO;
 import es.iespuertodelacruz.rl.NewInstituto.entities.Alumno;
-import es.iespuertodelacruz.rl.service.NewInstituto.service.AlumnoService;
+import es.iespuertodelacruz.rl.NewInstituto.service.AlumnoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;

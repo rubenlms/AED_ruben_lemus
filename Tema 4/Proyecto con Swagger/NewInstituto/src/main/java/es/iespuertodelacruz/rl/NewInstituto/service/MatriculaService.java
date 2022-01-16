@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.rl.service.NewInstituto.service;
+package es.iespuertodelacruz.rl.NewInstituto.service;
 
 import java.util.Optional;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import es.iespuertodelacruz.rl.NewInstituto.entities.Matricula;
-import es.iespuertodelacruz.rl.repository.NewInstituto.repository.MatriculaRepository;
+import es.iespuertodelacruz.rl.NewInstituto.repository.MatriculaRepository;
 
 @Component
 public class MatriculaService implements GenericService<Matricula, Integer> {

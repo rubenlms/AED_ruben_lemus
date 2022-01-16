@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.rl.service.NewInstituto.service;
+package es.iespuertodelacruz.rl.NewInstituto.service;
 
 import java.util.Optional;
 
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import es.iespuertodelacruz.rl.NewInstituto.entities.Alumno;
 import es.iespuertodelacruz.rl.NewInstituto.entities.Asignatura;
-import es.iespuertodelacruz.rl.repository.NewInstituto.repository.AsignaturaRepository;
+import es.iespuertodelacruz.rl.NewInstituto.repository.AsignaturaRepository;
 
 @Component
 public class AsignaturaService implements GenericService<Asignatura, Integer> {

@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.rl.service.NewInstituto.service;
+package es.iespuertodelacruz.rl.NewInstituto.service;
 
 import java.util.List;
 import java.util.Optional;

@@ -22,7 +22,7 @@ import ch.qos.logback.classic.Logger;
 import es.iespuertodelacruz.rl.NewInstituto.dto.AlumnoDTO;
 import es.iespuertodelacruz.rl.NewInstituto.dto.AsignaturaDTO;
 import es.iespuertodelacruz.rl.NewInstituto.entities.Asignatura;
-import es.iespuertodelacruz.rl.service.NewInstituto.service.AsignaturaService;
+import es.iespuertodelacruz.rl.NewInstituto.service.AsignaturaService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;

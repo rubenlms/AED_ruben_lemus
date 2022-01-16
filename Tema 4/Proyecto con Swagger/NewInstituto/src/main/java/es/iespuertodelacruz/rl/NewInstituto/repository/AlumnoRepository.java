@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.rl.repository.NewInstituto.repository;
+package es.iespuertodelacruz.rl.NewInstituto.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
